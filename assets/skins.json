@@ -1,0 +1,26 @@
+{
+"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"dogica-18": {
+		"file": "dogica-18.fnt",
+		"scaledSize": -1,
+		"markupEnabled": false,
+		"flip": false
+	}
+},
+"com.badlogic.gdx.graphics.Color": {
+	"RGBA_26_26_26_255": {
+		"r": 0.101960786,
+		"g": 0.101960786,
+		"b": 0.101960786,
+		"a": 1
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+	"default": {
+		"font": "dogica-18",
+		"fontColor": "RGBA_26_26_26_255",
+		"up": "text-button-up",
+		"down": "text-button-down"
+	}
+}
+}
