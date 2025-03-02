@@ -1,33 +1,53 @@
 # scene2d
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+## Scene2d UI Libgdx
 
-This project was generated with a template including simple application launchers and an empty `ApplicationAdapter` extension.
+* Informasi : Kode program ini adalah implementasi Scene2d pada libgdx
+* Link youtube : 
+* Versi : 0.1
 
-## Platforms
+## Penjelasan
+Scene2d digunakan untuk ui pada game libgdx, memungkinkan kita untuk membuat ui button [libgdx scene2d](https://libgdx.com/wiki/graphics/2d/scene2d/scene2d).
 
-- `core`: Main module with the application logic shared by all platforms.
-- `lwjgl3`: Primary desktop platform using LWJGL3; was called 'desktop' in older docs.
+Pembuatan scene2d ui dapat dilakukan dengan cara manual atau menggunakan skin composer, untuk membuat asset lebih mudah. Ini terlihat pada assets project terdapat beberapa file, yang akan menyimpan data style daripada skin scene2d. 
 
-## Gradle
+`Skin textButtonSkin = new Skin(Gdx.files.internal("skins.json"));`
 
-This project uses [Gradle](https://gradle.org/) to manage dependencies.
-The Gradle wrapper was included, so you can run Gradle tasks using `gradlew.bat` or `./gradlew` commands.
-Useful Gradle tasks and flags:
+load skins file dari folder assets
 
-- `--continue`: when using this flag, errors will not stop the tasks from running.
-- `--daemon`: thanks to this flag, Gradle daemon will be used to run chosen tasks.
-- `--offline`: when using this flag, cached dependency archives will be used.
-- `--refresh-dependencies`: this flag forces validation of all dependencies. Useful for snapshot versions.
-- `build`: builds sources and archives of every project.
-- `cleanEclipse`: removes Eclipse project data.
-- `cleanIdea`: removes IntelliJ project data.
-- `clean`: removes `build` folders, which store compiled classes and built archives.
-- `eclipse`: generates Eclipse project data.
-- `idea`: generates IntelliJ project data.
-- `lwjgl3:jar`: builds application's runnable jar, which can be found at `lwjgl3/build/libs`.
-- `lwjgl3:run`: starts the application.
-- `test`: runs unit tests (if any).
+```
+        // inisialisasi textButton dengan string text (play) dan pemberian skins ke textButton, dengan style default
+        textButton = new TextButton("play",textButtonSkin);
 
-Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
-For example, `core:clean` removes `build` folder only from the `core` project.
+        // pemberian aksi ketika textButton di click
+        textButton.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.debug("clicked","text button play");
+            }
+        });
+```
+
+Penggunaan table untuk memposisikan scene2d ui, agar kita dapat mudah mensejajarkan row atau column dengan table
+```
+Table table = new Table();
+
+table.add(textButton);
+// mode debug table
+table.debugTable();
+// pembuatan table seukuran dari layar window
+table.setFillParent(true);
+```
+
+```
+// inisialisasi stage
+stage = new Stage(viewport);
+stage.addActor(table);
+
+// agar apapun ui yang ada pada stage dapat berinteraksi dengan input
+Gdx.input.setInputProcessor(stage);
+```
+
+Urutan scene2d
+1. Stage : kontainer yang menyimpan banyak aktor
+2. Actor (button, checkbox, table, etc) : ui yang ada pada stage 
